@@ -2,7 +2,10 @@
   "logs": {
     "folder": "/home/miguel/Documents/db/pc_call_log.json"
   },
-  "file":{
+  "file_local":{
     "folder": "/"
+  },
+  "file_remote": {
+    "folder": ""
   }
 }
