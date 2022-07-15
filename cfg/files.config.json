@@ -1,6 +1,6 @@
 {
   "logs": {
-    "folder": "/home/miguel/Documents/db/pc_call_log.json"
+    "folder": "/var/log/app.log"
   },
   "file_local":{
     "folder": "/"

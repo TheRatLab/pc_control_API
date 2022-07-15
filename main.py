@@ -1,20 +1,24 @@
 # Author: Miguel Bedoya
 # Made in 8 of june 2022
 
-
-import subprocess
 from subprocess import Popen, PIPE, STDOUT, CalledProcessError
 from fastapi import FastAPI, status, HTTPException
 from model.pc import Health_response
+from src.configloader import ConfigLoader
 
 app = FastAPI()
 
 #TODO move endpoint to file
 @app.get("/pc/power", status_code=status.HTTP_200_OK, response_model=Health_response)
 def get_pc_powered_state():
+    
+
+    config = ConfigLoader()
+
     #TODO move to config file
-    host = '192.168.1.130'
+    host = config.get_value("host")
     hosts_status = []
+
     try:
 
         #TODO make parameter for ping configurable
@@ -30,7 +34,3 @@ def get_pc_powered_state():
     #TODO log host status
     return {'status': True}
 
-
-@app.post("/pc/command", status_code=status.HTTP_200_OK)
-def send_command():
-    return {"command": "return thing"}

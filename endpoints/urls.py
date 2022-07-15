@@ -1,8 +1,6 @@
 import json
-from urllib.parse import urljoin
 
-
-class urls:
+class url_builder:
 
     version: str = ""
     host: str = ""
@@ -12,17 +10,18 @@ class urls:
             self.version = pc_config.get("version")
             self.host = pc_config.get("host")
 
-    def root_path(self):
-        base_url: str = "http://" + self.host
-
+    #this should not be here, this needs to be moved to another librarie
+    def base_url(self):
         url: str = ""
-        url = urljoin(base_url, self.version)
-        # add version and path
-        print(url)
+        base_url: str = f"http://{self.host}"
+        url = f"{base_url}/{self.version}"
         return url
+
     def build_url(self, endpoint):
-        pass
+        return f"{self.base_url()}/{endpoint}"
+
+
 
 if __name__ == '__main__':
-    url = urls()
-    url.root_path()
+    url = url_builder()
+    print(url.build_url("pc"))
